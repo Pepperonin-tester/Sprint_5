@@ -1,17 +1,17 @@
 import pytest
 from selenium.webdriver.common.by import By
-from selenium.webdriver.support import wait
-from locators import MainPageLocators, LoginPageLocators, MainPageHeaderLocators, AccountPageLocators
-from conftest import TEST_EMAIL, TEST_PASSWORD, driver
+from locators import MainPageLocators, LoginPageLocators, MainPageHeaderLocators, CommonLocators
+from test_data import TEST_EMAIL, TEST_PASSWORD
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from urls import BASE_URL, REGISTER_URL
 
 class TestRedirects:
 
     def test_redirect_to_personal_account(self, driver):
-        driver.get("https://stellarburgers.education-services.ru/")
+        driver.get(BASE_URL)
         driver.find_element(*MainPageLocators.LOGIN_BUTTON).click()
-        driver.find_element(*LoginPageLocators.EMAIL_INPUT).send_keys(TEST_EMAIL)
+        driver.find_element(*CommonLocators.EMAIL_INPUT).send_keys(TEST_EMAIL)
         driver.find_element(*LoginPageLocators.PASSWORD_INPUT).send_keys(TEST_PASSWORD)
         driver.find_element(*LoginPageLocators.LOGIN_BUTTON).click()
         assert driver.find_element(*MainPageLocators.ORDER_BUTTON).is_displayed()
@@ -19,9 +19,9 @@ class TestRedirects:
         assert '/account' in driver.current_url
 
     def test_redirect_from_personal_account_to_constructor(self, driver):
-        driver.get("https://stellarburgers.education-services.ru/")
+        driver.get(BASE_URL)
         driver.find_element(*MainPageLocators.LOGIN_BUTTON).click()
-        driver.find_element(*LoginPageLocators.EMAIL_INPUT).send_keys(TEST_EMAIL)
+        driver.find_element(*CommonLocators.EMAIL_INPUT).send_keys(TEST_EMAIL)
         driver.find_element(*LoginPageLocators.PASSWORD_INPUT).send_keys(TEST_PASSWORD)
         driver.find_element(*LoginPageLocators.LOGIN_BUTTON).click()
         assert driver.find_element(*MainPageLocators.ORDER_BUTTON).is_displayed()
@@ -30,9 +30,9 @@ class TestRedirects:
         assert driver.find_element(*MainPageLocators.ORDER_BUTTON).is_displayed()
 
     def test_logo_click_redirects_from_personal_account_to_constructor(self, driver):
-        driver.get("https://stellarburgers.education-services.ru/")
+        driver.get(BASE_URL)
         driver.find_element(*MainPageLocators.LOGIN_BUTTON).click()
-        driver.find_element(*LoginPageLocators.EMAIL_INPUT).send_keys(TEST_EMAIL)
+        driver.find_element(*CommonLocators.EMAIL_INPUT).send_keys(TEST_EMAIL)
         driver.find_element(*LoginPageLocators.PASSWORD_INPUT).send_keys(TEST_PASSWORD)
         driver.find_element(*LoginPageLocators.LOGIN_BUTTON).click()
         assert driver.find_element(*MainPageLocators.ORDER_BUTTON).is_displayed()
@@ -42,9 +42,9 @@ class TestRedirects:
 
 class TestLogout:
     def test_user_logout(self, driver):
-        driver.get("https://stellarburgers.education-services.ru/")
+        driver.get(BASE_URL)
         driver.find_element(*MainPageLocators.LOGIN_BUTTON).click()
-        driver.find_element(*LoginPageLocators.EMAIL_INPUT).send_keys(TEST_EMAIL)
+        driver.find_element(*CommonLocators.EMAIL_INPUT).send_keys(TEST_EMAIL)
         driver.find_element(*LoginPageLocators.PASSWORD_INPUT).send_keys(TEST_PASSWORD)
         driver.find_element(*LoginPageLocators.LOGIN_BUTTON).click()
         assert driver.find_element(*MainPageLocators.ORDER_BUTTON).is_displayed()

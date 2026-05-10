@@ -7,16 +7,14 @@ class MainPageLocators:
     ORDER_BUTTON = (By.CLASS_NAME, "button_button_type_primary__1O7Bx")
 
 class ConstructorPageLocators:
-    # Вкладка "Булки"
-    BUNS_TAB = (By.XPATH, "//div[contains(@class,'tab_tab__1SPyG')][.//span[text()='Булки']]")
-    # Вкладка "Соусы"
-    SAUCES_TAB = (By.XPATH, "//div[contains(@class,'tab_tab__1SPyG')][.//span[text()='Соусы']]")
-    # Вкладка "Начинки"
-    FILLINGS_TAB = (By.XPATH, "//div[contains(@class,'tab_tab__1SPyG')][.//span[text()='Начинки']]")
+    # Вкладка "Булки" — уникальных атрибутов нет, поэтому использовал XPath по тексту span
+    BUNS_TAB = (By.XPATH, "//div[contains(@class,'tab_tab__1SPyG') and .//span[text()='Булки']]")
+    # Вкладка "Соусы" — уникальных атрибутов нет, поэтому использовал XPath по тексту span
+    SAUCES_TAB = (By.XPATH, "//div[contains(@class,'tab_tab__1SPyG') and .//span[text()='Соусы']]")
+    # Вкладка "Начинки" — уникальных атрибутов нет, поэтому использовал XPath по тексту span
+    FILLINGS_TAB = (By.XPATH, "//div[contains(@class,'tab_tab__1SPyG') and .//span[text()='Начинки']]")
 
 class LoginPageLocators:
-    # Поле для ввода email
-    EMAIL_INPUT = (By.XPATH, "//input[@name='name']")
     # Поле для ввода пароля
     PASSWORD_INPUT = (By.XPATH, "//input[@name='Пароль']")
     # Кнопка "Войти"
@@ -43,8 +41,6 @@ class RegisterPageLocators:
     LOGIN_LINK = (By.XPATH, "//a[contains(@class, 'Auth_link__1fOlj')]")
 
 class PasswordRecoveryPageLocators:
-    # Поле для ввода email
-    EMAIL_INPUT = (By.XPATH, "//input[@name='name']")
     # Кнопка "Восстановить пароль"
     RECOVER_BUTTON = (By.XPATH, "//button[text()='Восстановить']")
     # Ссылка "Войти"
@@ -63,3 +59,5 @@ class MainPageHeaderLocators:
 class CommonLocators:
     # Сообщение "Некорректный пароль"
     INVALID_PASSWORD_MESSAGE = (By.XPATH, "//p[text()='Некорректный пароль']")
+    # Поле для ввода email
+    EMAIL_INPUT = (By.XPATH, "//input[@name='name']")
